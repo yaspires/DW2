@@ -6,7 +6,13 @@
     <title>Perfil</title>
 </head>
 <body>
-    <center><h1>Bem vindo ao seu perfil!</h1></center>
-    <hr>
+    <% if(nome) {%>
+        <center><h1>Perfil</h1></center>
+        <hr>
+        <p>Olá <%=nome%>, seja bem vindo ao seu perfil!</p>
+    <%}else{%>
+        <center><h1>Bem vindo! faça seu login!</h1></center>
+        <hr>
+    <%}%>
 </body>
 </html>
