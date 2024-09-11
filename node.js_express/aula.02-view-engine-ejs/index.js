@@ -17,13 +17,18 @@ app.set("view engine", "ejs");
 // Rota perfil
 // :nome é um parametro obrigatorio e :nome? é um parametro opcional
 app.get("/perfil/:nome?", (req, res) => {
-  res.render("perfil");
+  const nome = req.params.nome;
+  res.render("perfil", { nome:nome });
 });
 
 // Rota videos
 app.get("/videos/:playlist?/:video?", (req, res) => {
   const playlist = req.params.playlist;
-  res.render("videos", { playlist: playlist });
+  const video = req.params.video;
+  res.render("videos", { 
+  playlist: playlist,
+  video:video
+ });
 });
 
 //rota produtos
@@ -41,11 +46,24 @@ app.get("/produtos/:produto?", (req, res) => {
   );
 });
 
+//rota pedidos
+app.get("/pedidos", (req,res) => {
+  //array de objetos com os pedidos
+  const pedidos = [
+    {produto: "celular", valor: 3000},
+    {produto: "computador", valor: 4000},
+    {produto: "tablet", valor: 2000},
+    {produto: "notebook", valor: 3800}
+  ]
+  res.render("pedidos", { pedidos:pedidos })
+});
+
 // Iniciando o servidor na porta 8080
-app.listen(8080, (error) => {
+const port = 8080
+app.listen(port, (error) => {
   if (error) {
     console.log(`Ocorreu um erro: ${error}`);
   } else {
-    console.log("Servidor iniciado com sucesso!");
+    console.log(`Servidor iniciado com sucesso em http://localhost:${port}`);
   }
 });
