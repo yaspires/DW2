@@ -34,6 +34,31 @@ app.get("/clientes", (req, res) => {
       cpf: "982.378.432.09",
       endereco: "Rua Santo Antônio, 232",
     },
+    {
+      nome: "Luiz da Silva", 
+      cpf: "893.239.892.30", 
+      endereco: "Rua Maria das Dores, 190", 
+    },
+    {
+      nome: "Mariana Alves Pereira", 
+      cpf: "765.892.345.12", 
+      endereco: "Rua dos Pinheiros, 45", 
+    },
+    {
+      nome: "Lucas Fernandes Costa", 
+      cpf: "987.654.321-09", 
+      endereco: "Avenida Brasil, 987", 
+    },
+    {
+      nome: "Pedro Henrique Lima", 
+      cpf: "456.789.123-03", 
+      endereco: "Rua das Palmeiras, 321", 
+    },
+    {
+      nome: "Camila Oliveira", 
+      cpf: "654.321.987-04", 
+      endereco: "Alameda dos Anjos, 72", 
+    },
   ];
   res.render("clientes", { cliente: cliente });
 });
