@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,4 +18,25 @@
         <p>Você está na playlist <%= playlist %> vendo o vídeo <%= video %></p>
     <%}%>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de vídeo</title>
+</head>
+<body>
+    <center><h3>Bem vindo a página de videos</h3></center>
+    <hr> 
+
+    <% if(playlist && video == undefined) {%>
+        <p> Você está na playlist <%= playlist %></p>
+    <%}%>
+    
+    <% if(playlist && video) {%>
+        <p>Você está na playlist <%= playlist %> vendo o vídeo <%= video %></p>
+    <%}%>
+</body>
+>>>>>>> 8e8bfd660688a19fb283e0b6caad1ba0246f383e
 </html>

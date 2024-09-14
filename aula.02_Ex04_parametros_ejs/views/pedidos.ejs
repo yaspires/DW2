@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,4 +32,39 @@
         </table>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+</head>
+<body>
+        <center><h1>Pedidos</h1></center>
+        <hr>
+        <%#comentário no ejs%>
+
+        <h4>forEach sem tabela</h4> 
+        <%pedidos.forEach((pedidos) => {%>
+            Produto: <%= pedidos.produto%><br>
+            Valor: <%= pedidos.valor%><br><br>
+            <%})%>
+
+        <h4>forEach com tabela</h4>
+        <table border="1">
+            <tr>
+                <th width="150px">Produto:</th>
+                <th>Preço:</th>
+            </tr>
+            <% pedidos.forEach((pedidos)=>{ %>
+            <tr>
+                <td><%= pedidos.produto%></td>
+                <td><%= pedidos.valor%></td>
+            </tr>
+            <% }) %>
+        </table>
+
+</body>
+>>>>>>> 8e8bfd660688a19fb283e0b6caad1ba0246f383e
 </html>

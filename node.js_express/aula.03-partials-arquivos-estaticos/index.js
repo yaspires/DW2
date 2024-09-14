@@ -14,10 +14,13 @@ app.get("/", (req, res) => {
 // Definindo ejs como renderizador de página
 app.set("view engine", "ejs");
 
+<<<<<<< HEAD
 // definir a pasta dos arquivos estaticos (public)
 app.use(express.static('public'))
 
 
+=======
+>>>>>>> 8e8bfd660688a19fb283e0b6caad1ba0246f383e
 // Rota perfil
 // :nome é um parametro obrigatorio e :nome? é um parametro opcional
 app.get("/perfil/:nome?", (req, res) => {
