@@ -1,6 +1,9 @@
 import express from 'express'
 const router = express.Router()
 
+// Importando o model de Cliente
+import Cliente from "../models/Cliente.js"
+
 // ROTA CLIENTES
 router.get("/clientes", function(req,res){
     const clientes = [

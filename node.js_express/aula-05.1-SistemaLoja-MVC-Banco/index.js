@@ -23,7 +23,7 @@ connection
 connection
   .query(`CREATE DATABASE IF NOT EXISTS loja;`)
   .then(() => {
-    console, log("O banco de dados foi criado com sucesso");
+    console.log("O banco de dados foi criado com sucesso");
   })
   .catch((error) => {
     console.log(error);

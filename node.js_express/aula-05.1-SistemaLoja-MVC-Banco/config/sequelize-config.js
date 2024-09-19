@@ -6,9 +6,9 @@ const connection = new Sequelize({
     dialect: 'mysql',
     host: 'localhost',
     username: 'root',
-    password: '',
+    password: '',   
     // comente essa linha na primeira execução
-    //database: 'loja',
+    database: 'loja',
     timezone: '-03:00'
 })
 
