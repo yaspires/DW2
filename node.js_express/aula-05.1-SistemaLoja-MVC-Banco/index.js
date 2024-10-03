@@ -33,6 +33,8 @@ connection
 app.set("view engine", "ejs");
 // Define o uso da pasta "public" para uso de arquivos estáticos
 app.use(express.static("public"));
+// permitindo o express receber os dados do formulario
+app.use(express.urlencoded({extended:false}))
 
 // Definindo o uso das rotas dos Controllers
 app.use("/", ClientesController);
