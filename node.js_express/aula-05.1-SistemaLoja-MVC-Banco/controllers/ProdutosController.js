@@ -29,11 +29,8 @@ router.post("/produtos/new", (req, res) => {
 });
 
 // ROTA DE EXCLUSÃO DE PRODUTOS
-// essa rota possui um parâmtero id
 router.get("/produtos/delete/:id", (req, res) => {
-  // coletar o id que veio na url
   const id = req.params.id;
-  // metodo para excluir
   Produto.destroy({
     where: {
       id: id,
@@ -52,7 +49,7 @@ router.get("/produtos/edit/:id", (req, res) => {
   const id = req.params.id;
   Produto.findByPk(id)
     .then((produtos) => {
-      res.render("ProdutoEdit", {
+      res.render("produtoEdit", {
         produtos: produtos,
       });
     })

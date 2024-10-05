@@ -1,12 +1,12 @@
 import express from "express";
 const router = express.Router();
 
-// Importando o model de Cliente
-import pedidos from "../models/Pedido.js";
+// Importando o model de Pedido
+import Pedido from "../models/Pedido.js";
 
 // ROTA PEDIDOS
 router.get("/pedidos", function (req, res) {
-  pedidos.findAll().then((pedidos) => {
+  Pedido.findAll().then((pedidos) => {
     res.render("pedidos", {
       pedidos: pedidos,
     });
@@ -17,7 +17,7 @@ router.get("/pedidos", function (req, res) {
 router.post("/pedidos/new", (req,res) =>{
     const numero = req.body.numero;
     const valor = req.body.valor;
-    pedidos.create({
+    Pedido.create({
         numero: numero,
         valor: valor,
     }).then(() => {
@@ -25,13 +25,13 @@ router.post("/pedidos/new", (req,res) =>{
     })
 })
 
-// ROTA DE EXCLUSÃO DE CLIENTES
+// ROTA DE EXCLUSÃO DE pedidos
 // essa rota possui um parâmtero id
 router.get("/pedidos/delete/:id", (req, res) => {
     // coletar o id que veio na url
     const id = req.params.id;
     // metodo para excluir
-    pedidos.destroy({
+    Pedido.destroy({
       where: {
         id: id,
       },
@@ -42,6 +42,37 @@ router.get("/pedidos/delete/:id", (req, res) => {
       .catch((error) => {
         console.log(error);
       });
+  });
+
+  //ROTA DE EDIÇÃO
+  router.get("/pedidos/edit/:id", (req, res) => {
+    const id = req.params.id;
+    Pedido.findByPk(id)
+      .then((pedido) => {
+        res.render("PedidoEdit", {
+          pedido: pedido,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+    // ROTA DE ALTERAÇÃO
+    router.post("/pedidos/update", (req, res) => {
+      const id = req.body.id;
+      const numero = req.body.numero;
+      const valor = req.body.valor;
+      Pedido.update(
+        { numero: numero, valor: valor },
+        { where: { id: id } }
+      )
+        .then(() => {
+          res.redirect("/pedidos");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   });
 
 export default router;

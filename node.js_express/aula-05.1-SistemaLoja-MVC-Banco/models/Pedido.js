@@ -3,7 +3,7 @@ import Sequelize from "sequelize";
 import connection from "../config/sequelize-config.js";
 
 // .define -> cria a tabela no banco
-const pedidos = connection.define("pedidos", {
+const Pedido = connection.define("pedidos", {
     numero: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -14,5 +14,5 @@ const pedidos = connection.define("pedidos", {
     },
   });
   // não força a criação da tabela caso já exista
-  pedidos.sync({ force: false });
-  export default pedidos;
+  Pedido.sync({ force: false });
+  export default Pedido;

@@ -31,9 +31,7 @@ router.post("/clientes/new", (req, res) => {
 // ROTA DE EXCLUSÃO DE CLIENTES
 // essa rota possui um parâmtero id
 router.get("/clientes/delete/:id", (req, res) => {
-  // coletar o id que veio na url
   const id = req.params.id;
-  // metodo para excluir
   Cliente.destroy({
     where: {
       id: id,

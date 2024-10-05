@@ -43,7 +43,7 @@
                             <td><%= pedido.numero %></td>
                             <td><%= pedido.valor.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %></td>
                             <td> <a style="color: orange;"" href="/pedidos/edit/<%= pedido.id %>"> Editar </a></td>
-                            <td> <a style="color: red;"" href="/pedidos/delete/<%= pedido.id %>"> Deletar </a></td>
+                            <td> <a style="color: red;"" href="/pedidos/delete/<%= pedido.id %>" onclick="return confirm('Deseja realmente dletar o cliente <%= cliente.nome%>?')"> Deletar </a></td>
                         </tr>
                         <% }) %>
                     </tbody>
