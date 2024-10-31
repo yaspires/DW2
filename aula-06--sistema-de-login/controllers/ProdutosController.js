@@ -3,9 +3,10 @@ const router = express.Router();
 
 // Importando o model de produto
 import Produto from "../models/Produto.js";
+import Auth from "../middleware/Auth.js";
 
 // ROTA PRODUTOS
-router.get("/produtos", function (req, res) {
+router.get("/produtos",Auth, function (req, res) {
   Produto.findAll().then((produtos) => {
     res.render("produtos", {
       produtos: produtos,

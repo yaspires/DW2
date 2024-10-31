@@ -4,11 +4,21 @@ import bcrypt from "bcrypt";
 import User from "../models/user.js";
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {
+    loggedOut:true
+  });
 });
 
+// rota de logout
+router.get("/logout", (req,res) => {
+  req.session.user = undefined
+  res.redirect("/")
+})
+
 router.get("/cadastro", (req, res) => {
-  res.render("cadastro");
+  res.render("cadastro", {
+    loggedOut:true
+  });
 });
 
 router.post("/createUser", (req, res) => {
@@ -19,9 +29,9 @@ router.post("/createUser", (req, res) => {
   User.findOne({ where: { email: email } }).then((user) => {
     //se não houver
     if (user == undefined) {
-        // aqui é feito o cadastro e o hash de senha
-    const salt = bcrypt.genSaltSync(10) 
-    const hash = bcrypt.hashSync(password,salt)
+      // aqui é feito o cadastro e o hash de senha
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
       User.create({
         email: email,
         password: hash,
@@ -29,9 +39,10 @@ router.post("/createUser", (req, res) => {
         res.redirect("login");
       });
       // caso usuario ja esteja cadastrado
-    }else{
-        res.send(`Usuário já cadastrado. <br> 
-            <a href="/login">Faça o login</a>`);
+    } else {
+      req.flash('danger', "Usuario já cadastrado!")
+      res.redirect("/cadastro")
+      
     }
   });
 });
@@ -49,17 +60,26 @@ router.post("/authenticate", (req, res) => {
   }).then((user) => {
     // se o usuario estiver cadastrado
     if (user != undefined) {
-        // valida a senha (verifica o hash)
-        const correct = bcrypt.compareSync(password,user.password)
-        // se a senha for valida
-        if(correct){
-            res.redirect("/");
+      // valida a senha (verifica o hash)
+      const correct = bcrypt.compareSync(password, user.password);
+      // se a senha for valida
+      if (correct) {
+        //autoriza login
+        req.session.user = {
+          id: user.id,
+          email: user.email,
+        };
+        // res.send(`Usuário logado: <br> ID:${req.session.user['id']}<br>
+        //   E-mail: ${req.session.user['email']}`)
+        req.flash('success', "login efetuado com sucesso!")
+        res.redirect("/");
+
         //senha nao valida
-        }else{
-            res.send(`senha inválida! <br> 
-                <a href="/login">Tente novamente!</a>`)
-        }
-      
+      } else {
+        req.flash('danger', "Senha invalida!")
+        res.send(`senha inválida! <br> 
+                <a href="/login">Tente novamente!</a>`);
+      }
     } else {
       // se o usuario não existir
       res.send(`Usuário não cadastrado. <br> 

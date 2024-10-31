@@ -4,8 +4,11 @@ const router = express.Router();
 // Importando o model de Cliente
 import Cliente from "../models/Cliente.js";
 
+//importando middleware
+import Auth from "../middleware/Auth.js";
+
 // ROTA CLIENTES
-router.get("/clientes", function (req, res) {
+router.get("/clientes",Auth, function (req, res) {
   Cliente.findAll().then((clientes) => {
     res.render("clientes", {
       clientes: clientes,

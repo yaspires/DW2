@@ -3,9 +3,10 @@ const router = express.Router();
 
 // Importando o model de Pedido
 import Pedido from "../models/Pedido.js";
+import Auth from "../middleware/Auth.js";
 
 // ROTA PEDIDOS
-router.get("/pedidos", function (req, res) {
+router.get("/pedidos",Auth,  function (req, res) {
   Pedido.findAll().then((pedidos) => {
     res.render("pedidos", {
       pedidos: pedidos,
